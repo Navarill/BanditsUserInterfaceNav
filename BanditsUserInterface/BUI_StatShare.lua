@@ -121,7 +121,7 @@ end
 --Stats share
 function BUI.StatShare.ClearStats()
 	BUI.StatShare.Units={}
-	for i=1,24 do
+	for i=1,12 do
 		frame=_G["BUI_RaidFrame"..i]
 		if frame then
 			for u=0,5 do
@@ -334,7 +334,7 @@ end
 local function ClearVotes(force)
 	if not force and not GroupElectionPending then return end
 	GroupElectionPending=nil
-	for i=1,24 do
+	for i=1,12 do
 		frame=_G["BUI_RaidFrame"..i]
 		if frame and frame.UltB[0] then
 			frame.UltB[0]:SetHidden(true)
@@ -486,18 +486,18 @@ local function SwitchLMP(enable)
 	if LMP then
 		if enable then
 			if not LMP:IsPingSuppressed(MAP_PIN_TYPE_PING, 'player') then LMP:UnsuppressPing(MAP_PIN_TYPE_PING,'player') end
-			for i=1,24 do
+			for i=1,12 do
 				if not LMP:IsPingSuppressed(MAP_PIN_TYPE_PING, 'group'..i) then LMP:UnsuppressPing(MAP_PIN_TYPE_PING,'group'..i) end
 			end
 		else
 --			LMP.Unload()
 			if not LMP:IsPingSuppressed(MAP_PIN_TYPE_PING, 'player') then LMP:SuppressPing(MAP_PIN_TYPE_PING,'player') end
-			for i=1,24 do
+			for i=1,12 do
 				if not LMP:IsPingSuppressed(MAP_PIN_TYPE_PING, 'group'..i) then LMP:SuppressPing(MAP_PIN_TYPE_PING,'group'..i) end
 			end
 --[[
 			if not LMP:IsPingMuted(MAP_PIN_TYPE_PING, 'player') then LMP:MutePing(MAP_PIN_TYPE_PING,'player') end
-			for i=1,24 do
+			for i=1,12 do
 				if not LMP:IsPingMuted(MAP_PIN_TYPE_PING, 'group'..i) then LMP:MutePing(MAP_PIN_TYPE_PING,'group'..i) end
 			end
 --]]
@@ -537,7 +537,7 @@ function BUI.StatShare.GroupElection()
 
 		local function ShowVotes()
 			if GroupElectionPending then return end
-			for i=1,24 do
+			for i=1,12 do
 				frame=_G["BUI_RaidFrame"..i]
 				if frame and frame.UltB[0] then
 					frame.UltB[0]:SetCenterColor(.1,1,.1,1)
@@ -640,6 +640,6 @@ end
 /script x1,y1=GetMapPlayerPosition('player') BUI.CallLater("MapPosition",2000,function() x2,y2=GetMapPlayerPosition('player') StartChatInput("["..GetCurrentMapZoneIndex().."]="..x2-x1) end)
 /script BUI.PingMap(136, 1, 1 / 2^16, 1 / 2^16) StartChatInput(table.concat({GetMapPlayerWaypoint()}, ","))
 /script SendPing() BUI.CallLater("UpdateStats",200,UpdateStats)
-/script local LMP=LibStub("LibMapPing") LMP.Unload() LMP:MutePing(MAP_PIN_TYPE_PING,'player') for i=1,24 do LMP:MutePing(MAP_PIN_TYPE_PING,'group'..i) end
+/script local LMP=LibStub("LibMapPing") LMP.Unload() LMP:MutePing(MAP_PIN_TYPE_PING,'player') for i=1,12 do LMP:MutePing(MAP_PIN_TYPE_PING,'group'..i) end
 /script BUI.PingMap(MAP_PIN_TYPE_PING, MAP_TYPE_LOCATION_CENTERED, 0, 0)
 --]]

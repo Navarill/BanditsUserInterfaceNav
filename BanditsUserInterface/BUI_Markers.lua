@@ -70,7 +70,7 @@ end
 function BUI.Markers_Init()
 	BUI.Markers=3
 	if BUI.Markers>0 then
-		for i=1,24 do
+		for i=1,12 do
 			if not BUI.GroupMarker[i] then
 				BUI.GroupMarker[i]=WINDOW_MANAGER:CreateControl("BUI_GroupMarker"..i,ParticleUI,CT_TEXTURE)
 				BUI.GroupMarker[i]:Create3DRenderSpace()
@@ -83,7 +83,7 @@ function BUI.Markers_Init()
 		end
 		EVENT_MANAGER:RegisterForUpdate("BUI_Markers", 10, Update)
 	else
-		for i=1,24 do
+		for i=1,12 do
 			if BUI.GroupMarker[i] then BUI.GroupMarker[i]:SetHidden(true) end
 		end
 		if not BUI.Compass then EVENT_MANAGER:UnregisterForUpdate("BUI_Markers") end
@@ -92,7 +92,7 @@ end
 --[[
 /script BUI.Markers_Init()
 /script
-for i=1,24 do
+for i=1,12 do
 BUI.GroupMarker[i]:Destroy3DRenderSpace()
 BUI.GroupMarker[i]:Create3DRenderSpace()
 end

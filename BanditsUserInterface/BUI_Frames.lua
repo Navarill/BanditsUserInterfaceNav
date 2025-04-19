@@ -504,7 +504,7 @@ function BUI.Frames.Raid_UI(s)	--UI init
 	syn_count=BUI.Vars.GroupSynergyCount+(ult and 1 or 0)-1
 	local indent=math.max((ult and hs or 0)+(syn and hs*(syn_count+1) or 0),(BUI.Vars.GroupElection and hs or 0))
 	--Create the group frame container
-	local raid		=BUI.UI.Control("BUI_RaidFrame",			BanditsUI,	{w*(24/col),(h+(comp and 0 or fs+3))*col},	BUI.Vars.BUI_RaidFrame,	false)
+	local raid		=BUI.UI.Control("BUI_RaidFrame",			BanditsUI,	{w*(12/col),(h+(comp and 0 or fs+3))*col},	BUI.Vars.BUI_RaidFrame,	false)
 	raid.backdrop	=BUI.UI.Backdrop("BUI_RaidFrame_Bg",		raid,		"inherit",		{CENTER,CENTER,0,0},	{0,0,0,0.4}, {0,0,0,1}, nil, true)
 	raid.label		=BUI.UI.Label(	"BUI_RaidFrame_Label",		raid.backdrop,		"inherit",		{CENTER,CENTER,0,0},	BUI.UI.Font("standard",20,true), nil, {1,1}, BUI.Loc("GF_Label"), false)
 	raid:SetAlpha(BUI.Vars.FrameOpacityOut/100)
@@ -512,9 +512,9 @@ function BUI.Frames.Raid_UI(s)	--UI init
 	raid:SetMovable(true)
 	raid:SetHandler("OnMouseUp", function(self) BUI.Menu:SaveAnchor(self) end)
 	raid.scale=s
-	--Iterate over 24 possible raid members
+	--Iterate over 12 possible raid members
 	local anchor	={TOPLEFT,TOPLEFT,0,0,raid}
-	for i=1, 24 do
+	for i=1, 12 do
 	local member	=BUI.UI.Control(	"BUI_RaidFrame"..i,		raid,		{w,h+(comp and 0 or fs+3)},	anchor,			true)
 --	member.bg		=BUI.UI.Backdrop("BUI_RaidFrame"..i.."_Bg",	member,	{w-6*s+fs*1.2,h-2*s},		{TOPLEFT,TOPLEFT,-fs*1.2+2*s,0},{.3,.3,.2,.7}, {0,0,0,0}, nil, not comp) member.bg:SetDrawLayer(0)
 	member.width=w
@@ -1156,7 +1156,7 @@ local function SortGroup(list)
 			BUI.Group[i]=nil
 		end
 	end
-	for i=index+1,24 do BUI.Group[i]=nil end
+	for i=index+1,12 do BUI.Group[i]=nil end
 end
 
 function BUI.Frames.GetGroupData()
@@ -1211,7 +1211,7 @@ function BUI.Frames.GetGroupData()
 			if BUI.GroupMarker[i] then BUI.GroupMarker[i]:SetHidden(true) end
 		end
 	end
-	for i=BUI.Group.members+1,24 do BUI.Group[i]=nil end
+	for i=BUI.Group.members+1,12 do BUI.Group[i]=nil end
 	if #list>1 then SortGroup(list) end
 end
 
@@ -1235,7 +1235,7 @@ function BUI.Frames:SetupGroup()
 	--Get group data
 	BUI.Frames.GetGroupData()
 	--Iterate over members
-	for i=1,24 do
+	for i=1,12 do
 		local unitTag=BUI.Group[i] and BUI.Group[i].tag
 		local frame=BUI_RaidFrame["group"..i]
 		--Only proceed for members which exist

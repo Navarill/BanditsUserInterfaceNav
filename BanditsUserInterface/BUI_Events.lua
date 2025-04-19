@@ -424,7 +424,7 @@ local function OnGroupChanged()
 		BUI.Frames:SetupGroup()
 		--Clear group info
 		BUI.StatShare.ClearStats()
-		for i=1, 24 do
+		for i=1, 12 do
 			local frame=BUI_RaidFrame["group"..i]
 			frame.health.dps:SetText("")
 			frame.debuff:SetHidden(true)
@@ -486,7 +486,7 @@ local function OnGroupLeave(_,characterName)
 		--Clear group info
 		if BUI.Vars.RaidFrames then
 			BUI.StatShare.ClearStats()
-			for i=1, 24 do
+			for i=1, 12 do
 				local frame=BUI_RaidFrame["group"..i]
 				frame.health.dps:SetText("")
 				frame.debuff:SetHidden(not gain)

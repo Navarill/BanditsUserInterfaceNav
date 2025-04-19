@@ -40,7 +40,7 @@ function BUI.Player:Initialize()
 	BUI.Player.trauma		={["current"]=value or 0, ["max"]=maxValue or 0, ["pct"]=zo_roundToNearest((value or 0)/(maxValue or 0),0.01)}
 
 	--Initialize group
-	for i=1, 24 do
+	for i=1, 12 do
 		BUI.Group['group'..i]={
 			["health"]	={current=0,max=0,pct=100},
 			["magicka"]	={current=0,max=0,pct=100},
